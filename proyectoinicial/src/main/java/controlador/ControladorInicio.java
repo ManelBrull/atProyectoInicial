@@ -7,7 +7,10 @@ import vista.interfaz.MantenimientoDeUsuarios;
 public class ControladorInicio {
 	
 	Inicio inicio;
-	
+	/**
+	 * 
+	 * @param mInicio
+	 */
 	public ControladorInicio(Inicio mInicio){
 		this.inicio = mInicio;
 	}
