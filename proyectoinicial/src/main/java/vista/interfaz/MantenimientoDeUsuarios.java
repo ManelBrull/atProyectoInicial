@@ -55,7 +55,7 @@ public class MantenimientoDeUsuarios extends ATDialog implements IMantenimiento 
 	 * @param parent
 	 */
 	public MantenimientoDeUsuarios(Shell parent) {
-		super(parent,"Nombre del proyecto - Usuaris");
+		super(parent,Utils.nombreProyecto + " - Usuarios");
 		cUsuarios = new ControladorUsuarios(this);
 	};
 

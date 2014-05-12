@@ -14,6 +14,7 @@ import org.eclipse.swt.widgets.Table;
 import org.eclipse.swt.widgets.TableColumn;
 import org.eclipse.swt.widgets.Text;
 
+import vista.interfaz.Utils;
 import at.controlador.ControladorMantenimientoComboEntidad;
 import at.vista.IMantenimiento;
 import at.vista.interfaz.ATDialog;
@@ -44,7 +45,7 @@ public class MantenimientoComboEntidad extends ATDialog implements IMantenimient
 	 * @param style
 	 */
 	public MantenimientoComboEntidad(Shell parent) {
-		super(parent, "NombreProyecto - ComboEntidad");
+		super(parent, Utils.nombreProyecto + " - ComboEntidad");
 //		controlador = new ControladorConcreto();
 	}
 

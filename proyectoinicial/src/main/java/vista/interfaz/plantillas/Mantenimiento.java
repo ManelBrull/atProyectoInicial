@@ -15,6 +15,7 @@ import org.eclipse.swt.widgets.Shell;
 import org.eclipse.swt.widgets.Table;
 import org.eclipse.swt.widgets.Text;
 
+import vista.interfaz.Utils;
 import at.controlador.ControladorMantenimiento;
 import at.vista.IMantenimiento;
 import at.vista.interfaz.ATDialog;
@@ -53,7 +54,7 @@ public class Mantenimiento extends ATDialog implements IMantenimiento {
 	 * @param parent
 	 */
 	public Mantenimiento(Shell parent) {
-		super(parent,"Nombre del proyecto - Mantenimiento");
+		super(parent,Utils.nombreProyecto + " - Mantenimiento");
 //		controlador = new ControladorConcreto();
 	}
 

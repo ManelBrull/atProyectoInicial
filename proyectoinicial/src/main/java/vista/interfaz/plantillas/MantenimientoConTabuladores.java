@@ -8,6 +8,7 @@ import org.eclipse.swt.widgets.Shell;
 import org.eclipse.swt.widgets.TabFolder;
 import org.eclipse.swt.widgets.TabItem;
 
+import vista.interfaz.Utils;
 import at.controlador.IControladorMantenimientoConTabuladores;
 import at.vista.interfaz.ATDialog;
 
@@ -25,7 +26,7 @@ public class MantenimientoConTabuladores extends ATDialog {
 	 * @param parent
 	 */
 	public MantenimientoConTabuladores(Shell parent) {
-		super(parent,"Nombre de Proyecto - Mantenimiento con tabuladores");
+		super(parent,Utils.nombreProyecto + " - Mantenimiento con tabuladores");
 		};
 
 	/**

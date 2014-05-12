@@ -54,7 +54,7 @@ public class Inicio {
 		public void open() {
 			Display display = Display.getDefault();
 			createContents();
-			Login myLogin = new Login(shell, "Proyecto Inicial");
+			Login myLogin = new Login(shell, Utils.nombreProyecto);
 			myLogin.setcLogin(new ControladorLogin(myLogin));
 			Boolean goApp  = myLogin.open();
 			if(goApp){
@@ -100,7 +100,7 @@ public class Inicio {
 			shellImg = SWTResourceManager.getImage(Inicio.class, Recursos.shellPath);
 			shell.setImage(shellImg);
 			azul = SWTResourceManager.getColor(Recursos.AT_COLOR_AZUL);
-			shell.setText("EjemploDeInicio");
+			shell.setText(Utils.nombreProyecto + "- Inicio");
 			
 			buttonImage = SWTResourceManager.getImage(Inicio.class, Recursos.imgBotonPath);
 			buttonSalir = SWTResourceManager.getImage(Inicio.class, Recursos.imgSalirPath);
