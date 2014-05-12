@@ -13,9 +13,12 @@
         <property name="hibernate.connection.password">test</property>
         -->
         
-        <property name="hibernate.connection.url">jdbc:mysql://localhost/test</property>
-        <property name="hibernate.connection.username">root</property>
-        <property name="hibernate.connection.password">Conan</property>
+        
+        <property name="hibernate.connection.url">jdbc:mysql://ip preproducción/gcbecarios</property>
+        <property name="hibernate.connection.username">gcbecarios</property>
+        <property name="hibernate.connection.password">añadir constraseña</property>
+        
+        
         
         <property name="hibernate.dialect">org.hibernate.dialect.MySQLDialect</property>
         <!--  mySQL Produccion -->

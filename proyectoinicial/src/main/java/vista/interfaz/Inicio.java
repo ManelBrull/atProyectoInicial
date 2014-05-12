@@ -4,6 +4,7 @@ package vista.interfaz;
 import modelo.HibernateUtil;
 import modelo.InicializarBaseDatos;
 
+import org.eclipse.jface.dialogs.MessageDialog;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.custom.CLabel;
 import org.eclipse.swt.events.SelectionAdapter;
@@ -226,6 +227,23 @@ public class Inicio {
 
 		public void setShell(Shell shell) {
 			this.shell = shell;
+		}
+
+		public boolean abrirDialogInforme() {
+			MessageDialog dialog = new MessageDialog(getShell(), 
+					"Informe", 
+					null,
+					"Va a abrir el informe, ¿Desea continuar?",
+					MessageDialog.QUESTION,
+					new String[]{"Si", "No"},
+					0);
+			if(dialog.open() == 0)
+			{
+				return true;
+			}
+			else {
+				return false;
+			}
 		}
 	}
 

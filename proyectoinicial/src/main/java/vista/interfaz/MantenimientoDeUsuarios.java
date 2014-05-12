@@ -20,11 +20,11 @@ import org.eclipse.swt.widgets.Text;
 import org.eclipse.wb.swt.SWTResourceManager;
 
 import at.vista.IMantenimiento;
-import at.vista.interfaz.ATorrentDialog;
+import at.vista.interfaz.ATDialog;
 import controlador.ControladorUsuarios;
 
 
-public class MantenimientoDeUsuarios extends ATorrentDialog implements IMantenimiento {
+public class MantenimientoDeUsuarios extends ATDialog implements IMantenimiento {
 
 	protected Object result;
 	protected Shell shell;

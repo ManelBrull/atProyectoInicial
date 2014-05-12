@@ -11,11 +11,12 @@ import org.eclipse.swt.widgets.Button;
 import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Display;
 import org.eclipse.swt.widgets.Label;
+import org.eclipse.swt.widgets.MessageBox;
 import org.eclipse.swt.widgets.Shell;
 import org.eclipse.swt.widgets.Text;
 import org.eclipse.wb.swt.SWTResourceManager;
 
-import at.vista.interfaz.ATorrentDialogEscudo;
+import at.vista.interfaz.ATDialogEscudo;
 import at.vista.interfaz.Recursos;
 import controlador.ControladorLogin;
 
@@ -33,7 +34,7 @@ import controlador.ControladorLogin;
  * @author brullp
  *
  */
-public class Login extends ATorrentDialogEscudo {
+public class Login extends ATDialogEscudo {
 	/** Controlador que maneja la logica de la interfaz **/
 	private ControladorLogin cLogin;
 
@@ -183,6 +184,13 @@ public class Login extends ATorrentDialogEscudo {
 
 	public void setcLogin(ControladorLogin cLogin) {
 		this.cLogin = cLogin;
+	}
+
+	public void openError(String cabecera, String mensaje) {
+		MessageBox dialog = new MessageBox(getShell(), SWT.ICON_ERROR);
+		dialog.setText(cabecera);
+		dialog.setMessage(mensaje);
+		dialog.open();
 	}
 
 }

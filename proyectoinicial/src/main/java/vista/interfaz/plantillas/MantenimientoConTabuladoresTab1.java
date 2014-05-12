@@ -11,9 +11,9 @@ import org.eclipse.swt.widgets.Table;
 import org.eclipse.swt.widgets.Text;
 
 import at.controlador.IControladorComposite;
-import at.vista.interfaz.AtorrentComposite;
+import at.vista.interfaz.ATComposite;
 
-public class MantenimientoConTabuladoresTab1 extends AtorrentComposite {
+public class MantenimientoConTabuladoresTab1 extends ATComposite {
 
 	Button btnNuevo;
 	Button btnGrabar;

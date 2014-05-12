@@ -9,9 +9,9 @@ import org.eclipse.swt.widgets.TabFolder;
 import org.eclipse.swt.widgets.TabItem;
 
 import at.controlador.IControladorMantenimientoConTabuladores;
-import at.vista.interfaz.ATorrentDialog;
+import at.vista.interfaz.ATDialog;
 
-public class MantenimientoConTabuladores extends ATorrentDialog {
+public class MantenimientoConTabuladores extends ATDialog {
 
 	protected Object result;
 	protected Shell shell;

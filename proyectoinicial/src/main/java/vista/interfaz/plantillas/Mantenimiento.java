@@ -16,7 +16,7 @@ import org.eclipse.swt.widgets.Text;
 
 import at.controlador.ControladorMantenimiento;
 import at.vista.IMantenimiento;
-import at.vista.interfaz.ATorrentDialog;
+import at.vista.interfaz.ATDialog;
 
 /**
  * 
@@ -28,7 +28,7 @@ import at.vista.interfaz.ATorrentDialog;
  * @author brullp
  *
  */
-public class Mantenimiento extends ATorrentDialog implements IMantenimiento {
+public class Mantenimiento extends ATDialog implements IMantenimiento {
 
 	protected Object result;
 	protected Shell shell;

@@ -13,7 +13,9 @@ import org.eclipse.swt.widgets.Table;
 import org.eclipse.swt.widgets.TableColumn;
 import org.eclipse.swt.widgets.Text;
 
+import at.controlador.ControladorMantenimientoComboEntidad;
 import at.vista.IMantenimiento;
+import at.vista.interfaz.ATDialog;
 
 public class MantenimientoComboEntidad extends ATDialog implements IMantenimiento {
 

@@ -49,11 +49,8 @@ public class ControladorLogin {
 			}
 			else {
 				login.setResult(false);
-				MessageBox dialog = new MessageBox(login.getShell(), SWT.ICON_ERROR);
-				dialog.setText("Error");
-				dialog.setMessage("El usuario es incorrecto, revise si ha escrito correctamente"
+				login.openError("Error","El usuario es incorrecto, revise si ha escrito correctamente"
 						+ " el nombre de usuario y la contraseña");
-				dialog.open();
 			}
 		} catch (NamingException | CampoRequeridoException e) {
 			login.setResult(false);

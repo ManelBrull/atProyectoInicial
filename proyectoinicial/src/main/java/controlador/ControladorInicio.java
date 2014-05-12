@@ -1,8 +1,8 @@
 package controlador;
-import org.eclipse.jface.dialogs.MessageDialog;
-
 import vista.interfaz.Inicio;
 import vista.interfaz.MantenimientoDeUsuarios;
+import at.controlador.GestionError;
+import at.vista.informes.ReportManager;
 
 public class ControladorInicio {
 	
@@ -20,21 +20,14 @@ public class ControladorInicio {
 	}
 
 	public void cargarInforme() {
-		MessageDialog dialog = new MessageDialog(inicio.getShell(), 
-				"Informe", 
-				null,
-				"Va a abrir el informe, ¿Desea continuar?",
-				MessageDialog.QUESTION,
-				new String[]{"Si", "No"},
-				0);
-		if(dialog.open() == 0){
+		if(inicio.abrirDialogInforme()){
 			try {
-				String pathReporte = "/es/atorrent/informes/BecariosActivosHoy.jasper"; 
-//				ReportManager.lanzarReporte(Inicio.class.getResourceAsStream(pathReporte));
+				String pathReporte = "/es/atorrent/informes/ejemplo.jasper"; 
+				ReportManager.lanzarReporte(Inicio.class.getResourceAsStream(pathReporte));
 						 
 			} catch (Exception e1) {
 				e1.printStackTrace();
-				MessageDialog.openError(inicio.getShell(), "Error", "Ha ocurrido un error en el informe");
+				new GestionError(inicio.getShell(), e1);
 			}
 		}
 		

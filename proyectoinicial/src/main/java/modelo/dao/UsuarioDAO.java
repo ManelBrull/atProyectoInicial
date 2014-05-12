@@ -8,10 +8,10 @@ import modelo.entidades.usuario.Usuario;
 import org.hibernate.HibernateException;
 import org.hibernate.Query;
 
-import at.modelo.dao.DAO;
+import at.modelo.dao.ATDAO;
 
 
-public class UsuarioDAO extends DAO<Usuario> {
+public class UsuarioDAO extends ATDAO<Usuario> {
 
 	@Override
 	protected void iniciaOperacion() {
