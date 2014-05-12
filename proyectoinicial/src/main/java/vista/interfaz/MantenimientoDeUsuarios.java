@@ -2,6 +2,7 @@ package vista.interfaz;
 
 import modelo.entidades.usuario.Permisos;
 
+import org.eclipse.jface.dialogs.MessageDialog;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.custom.CLabel;
 import org.eclipse.swt.events.SelectionAdapter;
@@ -232,6 +233,35 @@ public class MantenimientoDeUsuarios extends ATDialog implements IMantenimiento 
 	
 	@Override
 	protected void myDispose() {
+	}
+	
+	@Override
+	public void openError(String cabecera, String mensaje) {
+		MessageDialog.openError(
+				getShell(),
+				cabecera,
+				mensaje);
+	}
+
+	@Override
+	public void openInformation(String cabecera, String mensaje) {
+		MessageDialog.openInformation(
+				getShell(),
+				cabecera,
+				mensaje);
+	}
+
+	@Override
+	public int openQuestion(String cabecera, String mensaje, String[] opciones) {
+		MessageDialog dialog = new MessageDialog(
+				getShell(), 
+				cabecera, 
+				null,
+				mensaje,
+				MessageDialog.QUESTION,
+				opciones,
+				0 );
+		return dialog.open();
 	}
 	
 	public Shell getShell() {
