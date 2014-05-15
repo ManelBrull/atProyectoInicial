@@ -12,7 +12,11 @@ import at.modelo.dao.ATDAO;
 
 
 public class UsuarioDAO extends ATDAO<Usuario> {
-
+	
+	public UsuarioDAO(){
+		this.setNameEntidad("Usuarios");
+	}
+	
 	@Override
 	protected void iniciaOperacion() {
 		this.session = HibernateUtil.getSessionFactory().openSession();
@@ -22,11 +26,6 @@ public class UsuarioDAO extends ATDAO<Usuario> {
 	@Override
 	protected Usuario sessionGet(int id) {
 		return ((Usuario) session.get(Usuario.class, id));
-	}
-
-	@Override
-	protected Query createQueryGetAll() {
-		return session.createQuery("from Usuarios");
 	}
 	
 	public boolean validarUsuario(String name) throws HibernateException{
