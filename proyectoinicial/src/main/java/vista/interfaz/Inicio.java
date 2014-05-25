@@ -119,16 +119,26 @@ public class Inicio {
 			Menu menu_1 = new Menu(mntmMantenimiento);
 			mntmMantenimiento.setMenu(menu_1);
 			
-			MenuItem mntmBecarios = new MenuItem(menu_1, SWT.NONE);
-			mntmBecarios.addSelectionListener(new SelectionAdapter() {
+			MenuItem mntmUsuarios = new MenuItem(menu_1, SWT.NONE);
+			mntmUsuarios.addSelectionListener(new SelectionAdapter() {
 				@Override
 				public void widgetSelected(SelectionEvent e) {
-					cInicio.cargarMantenimiento();
+					cInicio.cargarMantenimientoUsuarios();
 				}
 			});
-			mntmBecarios.setText("EjemploDeMantenimiento\tCtrl+B");
-			mntmBecarios.setAccelerator(SWT.MOD1 + 'B');
+			mntmUsuarios.setText("EjemploDeMantenimiento\tCtrl+U");
+			mntmUsuarios.setAccelerator(SWT.MOD1 + 'U');
 			
+			new MenuItem(menu_1, SWT.SEPARATOR);
+			
+			MenuItem mntmSalir = new MenuItem(menu_1, SWT.NONE);
+			mntmSalir.setText("Salir");
+			mntmSalir.addSelectionListener(new SelectionAdapter() {
+				@Override
+				public void widgetSelected(SelectionEvent e) {
+					cInicio.close();
+				}
+			});
 			
 			MenuItem mntmInformes = new MenuItem(menuBar, SWT.CASCADE);
 			mntmInformes.setText("Informes");
