@@ -21,11 +21,13 @@ import org.eclipse.swt.widgets.MenuItem;
 import org.eclipse.swt.widgets.Shell;
 import org.eclipse.wb.swt.SWTResourceManager;
 
+import at.vista.IMensajes;
 import at.vista.interfaz.Recursos;
 import controlador.ControladorInicio;
 import controlador.ControladorLogin;
 
-public class Inicio {
+
+public class Inicio implements IMensajes {
 
 		protected Shell shell;
 		private ControladorInicio cInicio;
@@ -238,22 +240,31 @@ public class Inicio {
 		public void setShell(Shell shell) {
 			this.shell = shell;
 		}
-
-		public boolean abrirDialogInforme() {
-			MessageDialog dialog = new MessageDialog(getShell(), 
-					"Informe", 
+		@Override
+		public void openError(String cabecera, String mensaje) {
+			MessageDialog.openError(
+					getShell(),
+					cabecera,
+					mensaje);
+		}
+		@Override
+		public void openInformation(String cabecera, String mensaje) {
+			MessageDialog.openInformation(
+					getShell(),
+					cabecera,
+					mensaje);
+		}
+		@Override
+		public int openQuestion(String cabecera, String mensaje, String[] opciones) {
+			MessageDialog dialog = new MessageDialog(
+					getShell(), 
+					cabecera, 
 					null,
-					"Va a abrir el informe, ¿Desea continuar?",
+					mensaje,
 					MessageDialog.QUESTION,
-					new String[]{"Si", "No"},
-					0);
-			if(dialog.open() == 0)
-			{
-				return true;
-			}
-			else {
-				return false;
-			}
+					opciones,
+					0 );
+			return dialog.open();
 		}
 	}
 

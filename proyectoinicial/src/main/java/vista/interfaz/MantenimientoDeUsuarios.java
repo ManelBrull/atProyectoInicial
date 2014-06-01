@@ -13,10 +13,12 @@ import org.eclipse.swt.widgets.Button;
 import org.eclipse.swt.widgets.Combo;
 import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Display;
+import org.eclipse.swt.widgets.Event;
 import org.eclipse.swt.widgets.Group;
 import org.eclipse.swt.widgets.Shell;
 import org.eclipse.swt.widgets.Table;
 import org.eclipse.swt.widgets.TableColumn;
+import org.eclipse.swt.widgets.TableItem;
 import org.eclipse.swt.widgets.Text;
 import org.eclipse.wb.swt.SWTResourceManager;
 
@@ -233,12 +235,13 @@ public class MantenimientoDeUsuarios extends ATDialog implements IMantenimiento 
 	
 	@Override
 	protected void myDispose() {
+		
 	}
 	
 	@Override
 	public void openError(String cabecera, String mensaje) {
 		MessageDialog.openError(
-				getShell(),
+				shell,
 				cabecera,
 				mensaje);
 	}
@@ -246,7 +249,7 @@ public class MantenimientoDeUsuarios extends ATDialog implements IMantenimiento 
 	@Override
 	public void openInformation(String cabecera, String mensaje) {
 		MessageDialog.openInformation(
-				getShell(),
+				shell,
 				cabecera,
 				mensaje);
 	}
@@ -254,7 +257,7 @@ public class MantenimientoDeUsuarios extends ATDialog implements IMantenimiento 
 	@Override
 	public int openQuestion(String cabecera, String mensaje, String[] opciones) {
 		MessageDialog dialog = new MessageDialog(
-				getShell(), 
+				shell, 
 				cabecera, 
 				null,
 				mensaje,
@@ -264,84 +267,99 @@ public class MantenimientoDeUsuarios extends ATDialog implements IMantenimiento 
 		return dialog.open();
 	}
 	
-	public Shell getShell() {
-		return shell;
+	public String getTextNombreFiltro() {
+		return textNombreFiltro.getText();
 	}
 
-	public void setShell(Shell shell) {
-		this.shell = shell;
+	public void setTextNombreFiltro(String textNombreFiltro) {
+		this.textNombreFiltro.setText(textNombreFiltro);
 	}
 
-	public Button getBtnGrabar() {
-		return btnGrabar;
+	public String getTextNombre() {
+		return textNombre.getText();
 	}
 
-	public void setBtnGrabar(Button btnGrabar) {
-		this.btnGrabar = btnGrabar;
+	public void setTextNombre(String textNombre) {
+		this.textNombre.setText(textNombre);
+	}
+	
+	public void selectComboPermisos(int arg0){
+		comboPermisos.select(arg0);
+	}
+	
+	public int getSelectionIndexComboPermisos(){
+		return comboPermisos.getSelectionIndex();
 	}
 
-	public Button getBtnEliminar() {
-		return btnEliminar;
+	@Override
+	public void btnBuscarIsEnabled(boolean arg0) {
+		btnBuscar.setEnabled(arg0);
 	}
 
-	public void setBtnEliminar(Button btnEliminar) {
-		this.btnEliminar = btnEliminar;
+	@Override
+	public void btnBuscarSelected() {
+		btnBuscar.notifyListeners(SWT.Selection, new Event());		
 	}
 
-	public Button getBtnBuscar() {
-		return btnBuscar;
+	@Override
+	public void btnEliminarIsEnabled(boolean arg0) {
+		btnEliminar.setEnabled(arg0);		
 	}
 
-	public void setBtnBuscar(Button btnBuscar) {
-		this.btnBuscar = btnBuscar;
+	@Override
+	public void btnEliminarSelected() {
+		btnEliminar.notifyListeners(SWT.Selection, new Event());
 	}
 
-	public Button getBtnNuevo() {
-		return btnNuevo;
+	@Override
+	public void btnGrabarIsEnabled(boolean arg0) {
+		btnGrabar.setEnabled(arg0);
 	}
 
-	public void setBtnNuevo(Button btnNuevo) {
-		this.btnNuevo = btnNuevo;
+	@Override
+	public void btnGrabarSelected() {
+		btnGrabar.notifyListeners(SWT.Selection, new Event());
 	}
 
-	public Button getBtnSalir() {
-		return btnSalir;
+	@Override
+	public void btnNuevoIsEnabled(boolean arg0) {
+		btnNuevo.setEnabled(arg0);
 	}
 
-	public void setBtnSalir(Button btnSalir) {
-		this.btnSalir = btnSalir;
+	@Override
+	public void btnNuevoSelected() {
+		btnNuevo.notifyListeners(SWT.Selection, new Event());		
 	}
 
-	public Table getTable() {
-		return table;
+	@Override
+	public void btnSalirIsEnabled(boolean arg0) {
+		btnSalir.setEnabled(arg0);
 	}
 
-	public void setTable(Table table) {
-		this.table = table;
+	@Override
+	public void btnSalirSelected() {
+		btnSalir.notifyListeners(SWT.Selection, new Event());	
 	}
 
-	public Text getTextNombreFiltro() {
-		return textNombreFiltro;
+	@Override
+	public void anadirElemento(String[] arg0) {
+		TableItem item = new TableItem(table, SWT.NONE);
+		item.setText(arg0);
 	}
 
-	public void setTextNombreFiltro(Text textNombreFiltro) {
-		this.textNombreFiltro = textNombreFiltro;
+	@Override
+	public int elementoElegidoTabla() {
+		return table.getSelectionIndex();
 	}
 
-	public Text getTextNombre() {
-		return textNombre;
+	@Override
+	public void vaciarTabla() {
+		table.removeAll();
 	}
 
-	public void setTextNombre(Text textNombre) {
-		this.textNombre = textNombre;
-	}
-
-	public Combo getComboPermisos() {
-		return comboPermisos;
-	}
-
-	public void setComboPermisos(Combo comboPermisos) {
-		this.comboPermisos = comboPermisos;
+	@Override
+	public void cerrarDialog() {
+		shell.close();
 	}
 
 }

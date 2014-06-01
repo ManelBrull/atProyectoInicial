@@ -1,18 +1,19 @@
 package controlador;
 import vista.interfaz.Inicio;
 import vista.interfaz.MantenimientoDeUsuarios;
-import at.controlador.GestionError;
 import at.vista.informes.ReportManager;
 
 public class ControladorInicio {
 	
 	Inicio inicio;
+	ReportManager reportManager;
 	/**
 	 * 
 	 * @param mInicio
 	 */
 	public ControladorInicio(Inicio mInicio){
 		this.inicio = mInicio;
+		this.reportManager = new ReportManager();
 	}
 
 	public void cargarMantenimiento() {
@@ -20,14 +21,21 @@ public class ControladorInicio {
 	}
 
 	public void cargarInforme() {
-		if(inicio.abrirDialogInforme()){
+		int opcion = 
+				inicio.openQuestion(
+				"Lanzamiento informe", 
+				"Va a abrir el informe, ¿Desea continuar?",
+				new String[]{"Si", "No"});
+		if(opcion == 0)
+		{
 			try {
 				String pathReporte = "/es/atorrent/informes/ejemplo.jasper"; 
-				ReportManager.lanzarReporte(Inicio.class.getResourceAsStream(pathReporte));
+				reportManager.lanzarReporte(Inicio.class.getResourceAsStream(pathReporte));
 						 
 			} catch (Exception e1) {
-				e1.printStackTrace();
-				new GestionError(inicio.getShell(), e1);
+				this.inicio.openError(
+						"lanzamiento de informe", 
+						"No se ha podido abrir el informe requerido");
 			}
 		}
 		

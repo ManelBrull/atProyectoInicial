@@ -6,7 +6,6 @@ import modelo.entidades.usuario.Permisos;
 import modelo.entidades.usuario.Usuario;
 import vista.interfaz.MantenimientoDeUsuarios;
 import at.controlador.ControladorMantenimiento;
-import at.controlador.GestionError;
 import at.modelo.entidades.excepciones.CampoRequeridoException;
 
 public class ControladorUsuarios extends ControladorMantenimiento<Usuario> {
@@ -21,20 +20,20 @@ public class ControladorUsuarios extends ControladorMantenimiento<Usuario> {
 	@Override
 	public Iterator<Usuario> getIteratorFiltro() {
 		return new Usuario().getFiltro(
-				mantenimientoUsuarios.getTextNombreFiltro().getText());
+				mantenimientoUsuarios.getTextNombreFiltro());
 	}
 
 	@Override
 	public void rellenarInterfaz() {
-		mantenimientoUsuarios.getTextNombre().setText(entidadSeleccionado.getNombreUsuario());
-		mantenimientoUsuarios.getComboPermisos().select(entidadSeleccionado.getPermisos().ordinal());
+		mantenimientoUsuarios.setTextNombre(entidadSeleccionado.getNombreUsuario());
+		mantenimientoUsuarios.selectComboPermisos(entidadSeleccionado.getPermisos().ordinal());
 	}
 
 	@Override
 	public void borrarInterfaz() {
-		mantenimientoUsuarios.getTextNombre().setText("");
-		mantenimientoUsuarios.getTextNombreFiltro().setText("");
-		mantenimientoUsuarios.getComboPermisos().select(0);
+		mantenimientoUsuarios.setTextNombre("");
+		mantenimientoUsuarios.setTextNombreFiltro("");
+		mantenimientoUsuarios.selectComboPermisos(0);
 	}
 
 	@Override
@@ -42,10 +41,12 @@ public class ControladorUsuarios extends ControladorMantenimiento<Usuario> {
 		Usuario usr = new Usuario();
 		try {
 			usr.inicializaUsuario(
-					mantenimientoUsuarios.getTextNombre().getText(), 
-					Permisos.values()[mantenimientoUsuarios.getComboPermisos().getSelectionIndex()]);
+					mantenimientoUsuarios.getTextNombre(), 
+					Permisos.values()[mantenimientoUsuarios.getSelectionIndexComboPermisos()]);
 		} catch (CampoRequeridoException e) {
-			new GestionError(mantenimientoUsuarios.getShell(), e);
+			mantenimientoUsuarios.openError(
+					"Error", 
+					"No se ha podido inicializar el usuario");
 			return null;
 		}
 		return usr;
@@ -56,12 +57,18 @@ public class ControladorUsuarios extends ControladorMantenimiento<Usuario> {
 		Usuario usr = new Usuario();
 		try {
 			usr.inicializaUsuario(
-					mantenimientoUsuarios.getTextNombre().getText(), 
-					Permisos.values()[mantenimientoUsuarios.getComboPermisos().getSelectionIndex()]);
+					mantenimientoUsuarios.getTextNombre(), 
+					Permisos.values()[mantenimientoUsuarios.getSelectionIndexComboPermisos()]);
 		} catch (CampoRequeridoException e) {
 			return null;
 		}
 		return usr;
+	}
+
+	@Override
+	public void cerrarShell() {
+		// TODO Auto-generated method stub
+		
 	}
 
 }

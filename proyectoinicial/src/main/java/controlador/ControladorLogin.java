@@ -8,12 +8,7 @@ import javax.naming.directory.DirContext;
 import javax.naming.directory.InitialDirContext;
 
 import modelo.entidades.usuario.Usuario;
-
-import org.eclipse.swt.SWT;
-import org.eclipse.swt.widgets.MessageBox;
-
 import vista.interfaz.Login;
-import at.controlador.GestionError;
 import at.modelo.entidades.excepciones.CampoRequeridoException;
 
 public class ControladorLogin {
@@ -24,8 +19,8 @@ public class ControladorLogin {
 	}
 
 	public void entrar() {
-		String username = "atorrent\\" + login.getTextUsuari().getText().trim();
-		String password = login.getTextContrasenya().getText();
+		String username = "atorrent\\" + login.getTextUsuari();
+		String password = login.getTextContrasenya();
 		String base = "DC=DINS,DC=ATORRENT,DC=ES";
 		String ldapURL = "LDAP://sr1:389/DC=DINS,DC=ATORRENT,DC=ES";
 
@@ -40,7 +35,7 @@ public class ControladorLogin {
 		try {
 			DirContext ctx = new InitialDirContext(environment);
 			Usuario usr = new Usuario();
-			usr.setNombreUsuario(login.getTextUsuari().getText().trim());
+			usr.setNombreUsuario(login.getTextUsuari());
 			boolean result = usr.validarUsuario();
 			// validar usando hibernate
 			if(result == true){
@@ -54,7 +49,8 @@ public class ControladorLogin {
 			}
 		} catch (NamingException | CampoRequeridoException e) {
 			login.setResult(false);
-			new GestionError(login.getShell(), e);
+			login.openError("Error","El usuario es incorrecto, revise si ha escrito correctamente"
+					+ " el nombre de usuario y la contraseña");
 		}
 	}
 

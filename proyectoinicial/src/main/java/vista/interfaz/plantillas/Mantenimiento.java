@@ -10,9 +10,11 @@ import org.eclipse.swt.events.ShellEvent;
 import org.eclipse.swt.widgets.Button;
 import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Display;
+import org.eclipse.swt.widgets.Event;
 import org.eclipse.swt.widgets.Group;
 import org.eclipse.swt.widgets.Shell;
 import org.eclipse.swt.widgets.Table;
+import org.eclipse.swt.widgets.TableItem;
 import org.eclipse.swt.widgets.Text;
 
 import vista.interfaz.Utils;
@@ -195,39 +197,10 @@ public class Mantenimiento extends ATDialog implements IMantenimiento {
 	protected void myDispose() {
 	}
 	
-	public Shell getShell() {
-		return shell;
-	}
-
-	public Button getBtnGrabar() {
-		return btnGrabar;
-	}
-
-	public Button getBtnEliminar() {
-		return btnEliminar;
-	}
-
-	public Button getBtnBuscar() {
-		return btnBuscar;
-	}
-
-	public Button getBtnNuevo() {
-		return btnNuevo;
-	}
-
-	public Button getBtnSalir() {
-		return btnSalir;
-	}
-
-	@Override
-	public Table getTable() {
-		return this.table;
-	}
-
 	@Override
 	public void openError(String cabecera, String mensaje) {
 		MessageDialog.openError(
-				getShell(),
+				shell,
 				cabecera,
 				mensaje);
 	}
@@ -235,7 +208,7 @@ public class Mantenimiento extends ATDialog implements IMantenimiento {
 	@Override
 	public void openInformation(String cabecera, String mensaje) {
 		MessageDialog.openInformation(
-				getShell(),
+				shell,
 				cabecera,
 				mensaje);
 	}
@@ -243,7 +216,7 @@ public class Mantenimiento extends ATDialog implements IMantenimiento {
 	@Override
 	public int openQuestion(String cabecera, String mensaje, String[] opciones) {
 		MessageDialog dialog = new MessageDialog(
-				getShell(), 
+				shell, 
 				cabecera, 
 				null,
 				mensaje,
@@ -251,6 +224,78 @@ public class Mantenimiento extends ATDialog implements IMantenimiento {
 				opciones,
 				0 );
 		return dialog.open();
+	}
+
+	@Override
+	public void anadirElemento(String[] fila) {
+		TableItem item = new TableItem(table,SWT.NONE);
+		item.setText(fila);
+	}
+
+	@Override
+	public int elementoElegidoTabla() {
+		return table.getSelectionIndex();
+	}
+
+	@Override
+	public void vaciarTabla() {
+		table.removeAll();
+	}
+
+	@Override
+	public void btnBuscarIsEnabled(boolean arg0) {
+		btnBuscar.setEnabled(arg0);
+	}
+
+	@Override
+	public void btnBuscarSelected() {
+		btnBuscar.notifyListeners(SWT.Selection, new Event());		
+	}
+
+	@Override
+	public void btnEliminarIsEnabled(boolean arg0) {
+		btnEliminar.setEnabled(arg0);		
+	}
+
+	@Override
+	public void btnEliminarSelected() {
+		btnEliminar.notifyListeners(SWT.Selection, new Event());
+	}
+
+	@Override
+	public void btnGrabarIsEnabled(boolean arg0) {
+		btnGrabar.setEnabled(arg0);
+	}
+
+	@Override
+	public void btnGrabarSelected() {
+		btnGrabar.notifyListeners(SWT.Selection, new Event());
+	}
+
+	@Override
+	public void btnNuevoIsEnabled(boolean arg0) {
+		btnNuevo.setEnabled(arg0);
+	}
+
+	@Override
+	public void btnNuevoSelected() {
+		btnNuevo.notifyListeners(SWT.Selection, new Event());		
+	}
+
+	@Override
+	public void btnSalirIsEnabled(boolean arg0) {
+		btnSalir.setEnabled(arg0);
+	}
+
+	@Override
+	public void btnSalirSelected() {
+		btnSalir.notifyListeners(SWT.Selection, new Event());	
+	}
+
+
+	@Override
+	public void cerrarDialog() {
+		shell.close();
 	}
 
 }

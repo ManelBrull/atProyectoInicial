@@ -1,5 +1,6 @@
 package vista.interfaz;
 
+import org.eclipse.jface.dialogs.MessageDialog;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.events.KeyAdapter;
 import org.eclipse.swt.events.KeyEvent;
@@ -16,12 +17,10 @@ import org.eclipse.swt.widgets.Shell;
 import org.eclipse.swt.widgets.Text;
 import org.eclipse.wb.swt.SWTResourceManager;
 
+import at.vista.IMensajes;
 import at.vista.interfaz.ATDialogEscudo;
 import at.vista.interfaz.Recursos;
 import controlador.ControladorLogin;
-
-
-
 
 /**
  * Clase que muestra la interfaz de login en el dominio de Atorrent.
@@ -34,7 +33,7 @@ import controlador.ControladorLogin;
  * @author brullp
  *
  */
-public class Login extends ATDialogEscudo {
+public class Login extends ATDialogEscudo implements IMensajes {
 	/** Controlador que maneja la logica de la interfaz **/
 	private ControladorLogin cLogin;
 
@@ -154,16 +153,16 @@ public class Login extends ATDialogEscudo {
 		this.result = result;
 	}
 
-	public Text getTextUsuari() {
-		return textUsuari;
+	public String getTextUsuari() {
+		return textUsuari.getText().trim();
 	}
 
-	public void setTextUsuari(Text textUsuari) {
-		this.textUsuari = textUsuari;
+	public void setTextUsuari(String textUsuari) {
+		this.textUsuari.setText(textUsuari);
 	}
 
-	public Text getTextContrasenya() {
-		return textContrasenya;
+	public String getTextContrasenya() {
+		return textContrasenya.getText().trim();
 	}
 
 	public void setTextContrasenya(Text textContrasenya) {
@@ -186,11 +185,33 @@ public class Login extends ATDialogEscudo {
 		this.cLogin = cLogin;
 	}
 
+	@Override
 	public void openError(String cabecera, String mensaje) {
-		MessageBox dialog = new MessageBox(getShell(), SWT.ICON_ERROR);
-		dialog.setText(cabecera);
-		dialog.setMessage(mensaje);
-		dialog.open();
+		MessageDialog.openError(
+				getShell(),
+				cabecera,
+				mensaje);
+	}
+
+	@Override
+	public void openInformation(String cabecera, String mensaje) {
+		MessageDialog.openInformation(
+				getShell(),
+				cabecera,
+				mensaje);
+	}
+
+	@Override
+	public int openQuestion(String cabecera, String mensaje, String[] opciones) {
+		MessageDialog dialog = new MessageDialog(
+				getShell(), 
+				cabecera, 
+				null,
+				mensaje,
+				MessageDialog.QUESTION,
+				opciones,
+				0 );
+		return dialog.open();
 	}
 
 }
