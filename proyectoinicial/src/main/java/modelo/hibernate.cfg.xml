@@ -16,7 +16,7 @@
         
         <property name="hibernate.connection.url">jdbc:mysql://localhost/gcbecarios</property>
         <property name="hibernate.connection.username">gcbecarios</property>
-        <property name="hibernate.connection.password">añadir constraseña</property>
+        <property name="hibernate.connection.password"></property>
         
         
         

@@ -10,7 +10,7 @@ public class InicializarBaseDatos {
 		inicializarUsuarios();
 	}
 
-	public void inicializarUsuarios(){
+	private void inicializarUsuarios(){
 		Usuario developer = new Usuario();
 		try {
 			developer.setNombreUsuario("brullp");
