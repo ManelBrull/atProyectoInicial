@@ -7,13 +7,7 @@
     
     	<!--  mySQL Pre Test -->
         <property name="hibernate.connection.driver_class">com.mysql.jdbc.Driver</property>
-        <!--  
-        <property name="hibernate.connection.url">jdbc:mysql://10.128.128.100/test</property>
-        <property name="hibernate.connection.username">TestUser</property>
-        <property name="hibernate.connection.password">test</property>
-        -->
-        
-        
+               
         <property name="hibernate.connection.url">jdbc:mysql://localhost/gcbecarios</property>
         <property name="hibernate.connection.username">gcbecarios</property>
         <property name="hibernate.connection.password"></property>
