@@ -17,6 +17,7 @@ import org.eclipse.swt.widgets.Shell;
 import org.eclipse.swt.widgets.Text;
 import org.eclipse.wb.swt.SWTResourceManager;
 
+import at.controlador.IControlador;
 import at.vista.IMensajes;
 import at.vista.interfaz.ATDialogEscudo;
 import at.vista.interfaz.Recursos;
@@ -33,7 +34,7 @@ import controlador.ControladorLogin;
  * @author brullp
  *
  */
-public class Login extends ATDialogEscudo implements IMensajes {
+public class Login extends ATDialogEscudo implements IMensajes, IControlador {
 	/** Controlador que maneja la logica de la interfaz **/
 	private ControladorLogin cLogin;
 
@@ -45,6 +46,7 @@ public class Login extends ATDialogEscudo implements IMensajes {
 	
 	private Font titulo1;
 	private Image buttonSalir;
+	private Button btnEntrar;
 	
 	/**
 	 * Crea el dialog para el login
@@ -114,7 +116,7 @@ public class Login extends ATDialogEscudo implements IMensajes {
 		});
 		textContrasenya.setBounds(142, 39, 162, 23);
 		
-		Button btnEntrar = new Button(compositeMain, SWT.NONE);
+		btnEntrar = new Button(compositeMain, SWT.NONE);
 		btnEntrar.addSelectionListener(new SelectionAdapter() {
 			@Override
 			public void widgetSelected(SelectionEvent e) {
@@ -153,31 +155,23 @@ public class Login extends ATDialogEscudo implements IMensajes {
 		this.result = result;
 	}
 
-	public String getTextUsuari() {
+	public String getStringTextUsuari() {
 		return textUsuari.getText().trim();
 	}
 
-	public void setTextUsuari(String textUsuari) {
+	public void setStringTextUsuari(String textUsuari) {
 		this.textUsuari.setText(textUsuari);
 	}
 
-	public String getTextContrasenya() {
+	public String getStringTextContrasenya() {
 		return textContrasenya.getText().trim();
 	}
 
-	public void setTextContrasenya(Text textContrasenya) {
+	public void setStringTextContrasenya(Text textContrasenya) {
 		this.textContrasenya = textContrasenya;
 	}
 
-	public Shell getShell() {
-		return shell;
-	}
-
-	public void setShell(Shell shell) {
-		this.shell = shell;
-	}
-
-	public ControladorLogin getcLogin() {
+	public ControladorLogin getCLogin() {
 		return cLogin;
 	}
 
@@ -188,7 +182,7 @@ public class Login extends ATDialogEscudo implements IMensajes {
 	@Override
 	public void openError(String cabecera, String mensaje) {
 		MessageDialog.openError(
-				getShell(),
+				shell,
 				cabecera,
 				mensaje);
 	}
@@ -196,7 +190,7 @@ public class Login extends ATDialogEscudo implements IMensajes {
 	@Override
 	public void openInformation(String cabecera, String mensaje) {
 		MessageDialog.openInformation(
-				getShell(),
+				shell,
 				cabecera,
 				mensaje);
 	}
@@ -204,7 +198,7 @@ public class Login extends ATDialogEscudo implements IMensajes {
 	@Override
 	public int openQuestion(String cabecera, String mensaje, String[] opciones) {
 		MessageDialog dialog = new MessageDialog(
-				getShell(), 
+				shell, 
 				cabecera, 
 				null,
 				mensaje,
@@ -212,6 +206,20 @@ public class Login extends ATDialogEscudo implements IMensajes {
 				opciones,
 				0 );
 		return dialog.open();
+	}
+
+	@Override
+	public void inicializar() {
+		
+	}
+
+	@Override
+	public void salir() {
+		shell.dispose();
+	}
+
+	@Override
+	public void visibilidadBtn() {
 	}
 
 }

@@ -32,6 +32,10 @@
 			<attribute name="maven.pomderived" value="true"/>
 		</attributes>
 	</classpathentry>
-	<classpathentry kind="lib" path="C:/Users/Cafetera/workspace/at/target/at-0.0.1-SNAPSHOT.jar"/>
+	<classpathentry kind="lib" path="C:/Users/Cafetera/Dropbox/Proyecto final de carrera/ATlibrary/libreriaAtorrent-1.0.0.jar">
+		<attributes>
+			<attribute name="javadoc_location" value="file:/C:/Users/Cafetera/Dropbox/Proyecto%20final%20de%20carrera/ATlibrary/javadoc/"/>
+		</attributes>
+	</classpathentry>
 	<classpathentry kind="output" path="target/classes"/>
 </classpath>

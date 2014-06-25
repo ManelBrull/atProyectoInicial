@@ -52,7 +52,6 @@ public class ControladorUsuarios extends ControladorMantenimiento<Usuario> {
 		return usr;
 	}
 	
-	@Override
 	public Usuario creaObjetoSilencioso() {
 		Usuario usr = new Usuario();
 		try {
@@ -63,12 +62,6 @@ public class ControladorUsuarios extends ControladorMantenimiento<Usuario> {
 			return null;
 		}
 		return usr;
-	}
-
-	@Override
-	public void cerrarShell() {
-		// TODO Auto-generated method stub
-		
 	}
 
 }

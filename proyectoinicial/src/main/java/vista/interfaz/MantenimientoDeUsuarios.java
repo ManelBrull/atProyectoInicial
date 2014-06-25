@@ -86,7 +86,7 @@ public class MantenimientoDeUsuarios extends ATDialog implements IMantenimiento 
 		shell.addShellListener(new ShellAdapter() {
 			@Override
 			public void shellClosed(ShellEvent e) {
-				cUsuarios.cerrarShell();
+				cUsuarios.salir();
 			}
 		});
 		shell.setSize(560, 335);
@@ -292,7 +292,7 @@ public class MantenimientoDeUsuarios extends ATDialog implements IMantenimiento 
 	}
 
 	@Override
-	public void btnBuscarIsEnabled(boolean arg0) {
+	public void setBtnBuscarEnabled(boolean arg0) {
 		btnBuscar.setEnabled(arg0);
 	}
 
@@ -302,7 +302,7 @@ public class MantenimientoDeUsuarios extends ATDialog implements IMantenimiento 
 	}
 
 	@Override
-	public void btnEliminarIsEnabled(boolean arg0) {
+	public void setBtnEliminarEnabled(boolean arg0) {
 		btnEliminar.setEnabled(arg0);		
 	}
 
@@ -312,7 +312,7 @@ public class MantenimientoDeUsuarios extends ATDialog implements IMantenimiento 
 	}
 
 	@Override
-	public void btnGrabarIsEnabled(boolean arg0) {
+	public void setBtnGrabarEnabled(boolean arg0) {
 		btnGrabar.setEnabled(arg0);
 	}
 
@@ -322,7 +322,7 @@ public class MantenimientoDeUsuarios extends ATDialog implements IMantenimiento 
 	}
 
 	@Override
-	public void btnNuevoIsEnabled(boolean arg0) {
+	public void setBtnNuevoEnabled(boolean arg0) {
 		btnNuevo.setEnabled(arg0);
 	}
 
@@ -332,7 +332,7 @@ public class MantenimientoDeUsuarios extends ATDialog implements IMantenimiento 
 	}
 
 	@Override
-	public void btnSalirIsEnabled(boolean arg0) {
+	public void setBtnSalirEnabled(boolean arg0) {
 		btnSalir.setEnabled(arg0);
 	}
 
@@ -361,5 +361,7 @@ public class MantenimientoDeUsuarios extends ATDialog implements IMantenimiento 
 	public void cerrarDialog() {
 		shell.close();
 	}
+
+
 
 }

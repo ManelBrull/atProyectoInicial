@@ -66,8 +66,8 @@ public class Usuario implements ICrud <Usuario>, Comparable <Usuario>, IEsFiltro
 		return new UsuarioDAO().get(id);
 	}
 	@Transient
-	public boolean validarUsuario() throws HibernateException{
-		return new UsuarioDAO().validarUsuario(this.nombreUsuario);
+	static public boolean autentificar(String nombreUsuario){
+		return new UsuarioDAO().validarUsuario(nombreUsuario);
 	}
 	
 	@Override

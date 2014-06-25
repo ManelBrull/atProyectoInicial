@@ -30,11 +30,18 @@ public class UsuarioDAO extends ATDAO<Usuario> {
 	
 	public boolean validarUsuario(String name) throws HibernateException{
 		iniciaOperacion();
-		Long i = ((Long) session.createQuery(
+		Long i;
+		try {
+			i = ((Long) session.createQuery(
 				"Select count(*) from Usuarios where nombreUsuario = '"+name+"'")
 				.iterate().next());
-		if(i == 1) return true;
-		return false;
+		 if(i == 1) return true;
+			return false;
+		} catch (HibernateException he) {
+			throw he;
+		} finally {
+			session.close();
+		}
 	}
 
 	public List <Usuario> getFiltro(String filtro) {

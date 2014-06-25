@@ -1,19 +1,19 @@
 package controlador;
 import vista.interfaz.Inicio;
 import vista.interfaz.MantenimientoDeUsuarios;
-import at.vista.informes.ReportManager;
+import at.vista.informes.JasperReportManager;
 
 public class ControladorInicio {
 	
 	Inicio inicio;
-	ReportManager reportManager;
+	JasperReportManager reportManager;
 	/**
 	 * 
 	 * @param mInicio
 	 */
 	public ControladorInicio(Inicio mInicio){
 		this.inicio = mInicio;
-		this.reportManager = new ReportManager();
+		this.reportManager = new JasperReportManager();
 	}
 
 	public void cargarMantenimiento() {

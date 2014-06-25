@@ -16,11 +16,32 @@ public class ControladorLogin {
 	
 	public ControladorLogin(Login myLogin){
 		this.login = myLogin;
+		login.setResult(false);
 	}
 
 	public void entrar() {
-		String username = "atorrent\\" + login.getTextUsuari();
-		String password = login.getTextContrasenya();
+		try {
+			iniciarContexto();
+			/** Se comprueba que este en la tabla de usuarios que pueden acceder a la aplicacion **/ 
+			if(Usuario.autentificar(login.getStringTextUsuari())){
+				login.setResult(true);
+				login.salir();
+			}
+			else {
+				login.openError("Error","No tiene permisos para acceder a la aplicación");
+			}
+		} catch (Exception e) {
+			login.openError("Error","El usuario es incorrecto, revise si ha escrito correctamente"
+					+ " el nombre de usuario y la contraseña");
+		}
+	}
+	/**
+	 * Se lanza excepcion si existe algun error al crear el contexto
+	 * @throws Exception
+	 */
+	private void iniciarContexto() throws Exception {
+		String username = "atorrent\\" + login.getStringTextUsuari();
+		String password = login.getStringTextContrasenya();
 		String base = "DC=DINS,DC=ATORRENT,DC=ES";
 		String ldapURL = "LDAP://sr1:389/DC=DINS,DC=ATORRENT,DC=ES";
 
@@ -31,32 +52,13 @@ public class ControladorLogin {
 		environment.put(Context.SECURITY_AUTHENTICATION, "simple");
 		environment.put(Context.SECURITY_PRINCIPAL, username);
 		environment.put(Context.SECURITY_CREDENTIALS, password);
+		DirContext ctx = new InitialDirContext(environment);
 
-		try {
-			DirContext ctx = new InitialDirContext(environment);
-			Usuario usr = new Usuario();
-			usr.setNombreUsuario(login.getTextUsuari());
-			boolean result = usr.validarUsuario();
-			// validar usando hibernate
-			if(result == true){
-				login.setResult(true);
-				login.getShell().dispose();
-			}
-			else {
-				login.setResult(false);
-				login.openError("Error","El usuario es incorrecto, revise si ha escrito correctamente"
-						+ " el nombre de usuario y la contraseña");
-			}
-		} catch (NamingException | CampoRequeridoException e) {
-			login.setResult(false);
-			login.openError("Error","El usuario es incorrecto, revise si ha escrito correctamente"
-					+ " el nombre de usuario y la contraseña");
-		}
 	}
-
+	
 	public void salir() {
 		login.setResult(false);
-		login.getShell().dispose();
+		login.salir();
 	}
 	
 	
